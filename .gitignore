@@ -1,0 +1,15 @@
+# Executables and compiler outputs
+*.exe
+*.o
+*.obj
+*.out
+
+# Generated binary data
+/dados.bin
+
+# Editor and operating-system files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini

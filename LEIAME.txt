@@ -1,0 +1,99 @@
+========================================================================
+TRABALHO DO RA2 - PROGRAMACAO IMPERATIVA
+Professor: Alcides Calsavara
+Aluno: 2º Periodo de Ciencia da Computacao
+========================================================================
+
+ESTRUTURA DOS ARQUIVOS NA PASTA:
+------------------------------------------------------------------------
+1. alimentos.csv:
+   Arquivo de texto em formato CSV (delimitado por ponto e virgula) contendo
+   todos os 597 alimentos da Tabela 1 do documento TACO (4ª edicao).
+   Campos: Numero;Descricao;Energia_kcal;Proteina_g;Categoria
+
+2. dados.bin:
+   Arquivo binario gerado pelo programa P1 a partir de alimentos.csv.
+
+3. alimento.h e alimento.c:
+   - Declaracao do enumerado CategoriaAlimento com as 15 categorias oficiais.
+   - Declaracao da struct AlimentoRegistro para escrita e leitura binaria.
+   - Funcoes de conversao e traducao de nomes de categorias.
+   - Comparacao alfabetica de textos (ignora acentos e maiusculas/minusculas).
+
+4. arvore.h e arvore.c:
+   - Estrutura do no da Arvore Binaria de Busca (NoArvore) contendo a chave
+     (valor de energia ou proteina) e o ponteiro para o no do alimento na lista ligada.
+   - Insercao na arvore.
+   - Percurso decrescente (Direita -> Raiz -> Esquerda).
+   - Busca/listagem por intervalo de valores (minimo e maximo).
+   - Liberacao recursiva de memoria (free).
+
+5. lista.h e lista.c:
+   - Estrutura NoAlimento (lista encadeada de alimentos, ordenada alfabeticamente pela descricao).
+   - Estrutura NoCategoria (lista encadeada de categorias, ordenada alfabeticamente pelo nome).
+   - Insercao ja ordenada tanto na lista de categorias quanto na de alimentos.
+   - Remocao de categoria e remocao de alimento especifico.
+   - Reconstrucao automatica das duas arvores binarias apos remocao de alimento.
+   - Liberacao completa da memoria alocada no heap (free).
+
+6. operacoes.h e operacoes.c:
+   - Funcoes que implementam a carga inicial de dados.bin para a memoria.
+   - Salvamento dos dados atualizados de volta para dados.bin ao encerrar.
+   - As funcoes que atendem cada uma das 9 opcoes do menu da interface.
+
+7. P1.c:
+   - Contem apenas a funcao main do programa P1 (le alimentos.csv e gera dados.bin).
+
+8. P2.c:
+   - Contem apenas a funcao main do programa P2 (carrega dados.bin em listas e arvores,
+     e executa o menu interativo com o usuario).
+
+------------------------------------------------------------------------
+COMO COMPILAR OS PROGRAMAS (usando o GCC):
+------------------------------------------------------------------------
+Abra o terminal (prompt de comando ou PowerShell) nesta pasta e execute:
+
+Para compilar o P1:
+gcc -Wall -Wextra -std=c99 -o P1.exe P1.c alimento.c
+
+Para compilar o P2:
+gcc -Wall -Wextra -std=c99 -o P2.exe P2.c operacoes.c lista.c arvore.c alimento.c
+
+------------------------------------------------------------------------
+COMO EXECUTAR OS PROGRAMAS:
+------------------------------------------------------------------------
+1º Passo (Gerar o arquivo binario):
+./P1.exe
+(Ou: P1.exe)
+
+2º Passo (Executar a interface interativa com listas e arvores):
+./P2.exe
+(Ou: P2.exe)
+
+------------------------------------------------------------------------
+OPCOES DO MENU DO PROGRAMA P2:
+------------------------------------------------------------------------
+1. Listar todas as categorias de alimentos (em ordem alfabetica da lista)
+2. Listar todos os alimentos de certa categoria (em ordem alfabetica da lista)
+3. Listar alimentos de certa categoria em ordem decrescente de ENERGIA (arvore)
+4. Listar alimentos de certa categoria em ordem decrescente de PROTEINA (arvore)
+5. Listar alimentos de certa categoria em faixa [min, max] de ENERGIA (arvore)
+6. Listar alimentos de certa categoria em faixa [min, max] de PROTEINA (arvore)
+7. Remover uma categoria de alimentos
+8. Remover um alimento especifico (recria/atualiza as arvores da categoria)
+9. Encerrar o programa (salvando nova versao de dados.bin caso haja alteracoes)
+
+------------------------------------------------------------------------
+REQUISITOS ATENDIDOS RIGOROSAMENTE:
+------------------------------------------------------------------------
+- Representacao das 15 categorias usando enumerado (enum).
+- Codigo estruturado em funcoes claras e com comentarios explicativos.
+- Arquivos .h e .c organizados sem duplicacao de codigo.
+- Funcoes main isoladas em P1.c e P2.c (sem arquivos .h correspondentes).
+- Uso estrito de malloc/calloc e free, sem vazamento de memoria.
+- Insercao ja ordenada alfabeticamente na lista de categorias e na de alimentos.
+- Arvores binarias com chave e ponteiro para o no da lista de alimentos.
+- NENHUM uso de break ou continue para controle de lacos.
+- Funcoes preferencialmente com um unico return.
+- Identificadores claros, significativos e intuitivos.
+========================================================================
